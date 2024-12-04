@@ -26,4 +26,5 @@ jobs:
        context: 
        push: true
        tags: ${{ secrets.DOCKERHUB_USERNAME}}/juice-shop-hmp:latest
-       secret: CLE_PRIV=${{ secrets.JUICY_RSA_PRIK }}
+       secret: | 
+          "CLE_PRIV=${{ secrets.JUICY_RSA_PRIK }}"
