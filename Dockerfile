@@ -14,6 +14,7 @@ RUN chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
 RUN rm data/chatbot/botDefaultTrainingData.json || true
 RUN rm ftp/legal.md || true
 RUN rm i18n/*.json || true
+RUN --mount=type=secret,id=CLE_PRIV,env=JUICY_RSA_PRIK
 
 ARG CYCLONEDX_NPM_VERSION=latest
 RUN npm install -g @cyclonedx/cyclonedx-npm@$CYCLONEDX_NPM_VERSION
@@ -49,3 +50,4 @@ COPY --chown=65532:0 --from=libxmljs-builder /juice-shop/node_modules/libxmljs .
 USER 65532
 EXPOSE 3000
 CMD ["/juice-shop/build/app.js"]
+
